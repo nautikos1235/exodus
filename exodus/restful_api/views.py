@@ -20,7 +20,7 @@ from restful_api.serializers import *
 @csrf_exempt
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@permission_classes((IsAuthenticated, IsAdminUser))
 def get_report_infos(request, r_id):
     if request.method == 'GET':
         report = Report.objects.get(pk = r_id)
@@ -39,7 +39,7 @@ def get_report_infos(request, r_id):
 @csrf_exempt
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,IsAdminUser))
+@permission_classes((IsAuthenticated, IsAdminUser))
 def get_apk(request, r_id):
     if request.method == 'GET':
         report = Report.objects.get(pk = r_id)
@@ -60,7 +60,7 @@ def get_apk(request, r_id):
 @csrf_exempt
 @api_view(['POST'])
 @authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@permission_classes((IsAuthenticated, IsAdminUser))
 def upload_pcap(request, r_id):
     try:
         up_file = request.FILES['file']
@@ -92,7 +92,7 @@ def upload_pcap(request, r_id):
 @csrf_exempt
 @api_view(['POST'])
 @authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@permission_classes((IsAuthenticated, IsAdminUser))
 def upload_flow(request, r_id):
     try:
         up_file = request.FILES['file']
@@ -256,7 +256,7 @@ def search(request):
 @csrf_exempt
 @api_view(['GET'])
 @authentication_classes((TokenAuthentication,))
-@permission_classes((IsAuthenticated,))
+@permission_classes((IsAuthenticated, IsAdminUser))
 def search_strict_handle_details(request, handle):
     if request.method == 'GET':
         try:
