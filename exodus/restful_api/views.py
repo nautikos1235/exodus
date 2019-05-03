@@ -181,6 +181,14 @@ def get_all_trackers(request):
 
 
 @csrf_exempt
+@api_view(['PUT'])
+@authentication_classes((TokenAuthentication,))
+@permission_classes((IsAuthenticated, IsAdminUser))
+def update_tracker(request, r_id):
+    return JsonResponse({'tracker_id': r_id})
+
+
+@csrf_exempt
 @api_view(['GET'])
 @authentication_classes(())
 @permission_classes(())
